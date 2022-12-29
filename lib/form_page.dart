@@ -1,31 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:textfield_example/form_page.dart';
-void main(){
-  runApp(const MyApp());
-}
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+
+import 'main.dart';
+class FormActivity extends StatelessWidget {
+  const FormActivity({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: MyLoginPage(),
+    return const MaterialApp(
+      home: FormPage(),
     );
   }
 }
-class MyLoginPage extends StatefulWidget {
-  const MyLoginPage({Key? key}) : super(key: key);
+class FormPage extends StatefulWidget {
+  const FormPage({Key? key}) : super(key: key);
 
   @override
-  State<MyLoginPage> createState() => _MyLoginPageState();
+  State<FormPage> createState() => _FormPageState();
 }
 
-class _MyLoginPageState extends State<MyLoginPage> {
+class _FormPageState extends State<FormPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("TextField Example"),
+        title: const Text("Form Activity"),
         centerTitle: true,
       ),
       drawer: Drawer(
@@ -54,7 +52,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
             ListTile(
               leading: Icon(Icons.person),
               title: Text("Profile",
-              style: TextStyle(color: Colors.black45, fontSize: 16),
+                style: TextStyle(color: Colors.black45, fontSize: 16),
               ),
               onTap: (){
                 Navigator.pop(context);
@@ -81,42 +79,48 @@ class _MyLoginPageState extends State<MyLoginPage> {
           ],
         ),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16),
+      body: Form(
         child: Column(
           children: [
-            TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "Username",
-                hintText: "Enter Username"
+            TextFormField(
+              decoration: const InputDecoration(
+                icon: Icon(Icons.person),
+                labelText: "Name",
+                hintText: "Enter your name",
               ),
             ),
-            SizedBox(height: 16),
-            TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "Password",
-                hintText: "Enter Password"
+            TextFormField(
+              decoration: const InputDecoration(
+                icon: Icon(Icons.phone),
+                labelText: "Phone No:",
+                hintText: "Enter Phone number",
               ),
             ),
-            SizedBox(height: 16),
-            Container(
-              margin: EdgeInsets.all(24),
-              child: RaisedButton(
-                child: Text("Login",
+            TextFormField(
+              decoration: const InputDecoration(
+                icon: Icon(Icons.calendar_today),
+                labelText: "DOB",
+                hintText: "Enter DOB",
+              ),
+            ),
+            SizedBox(height: 16,),
+            new Container(
+              //padding: EdgeInsets.only(left: 150, top: 50),
+              child: new RaisedButton(
+                color: Colors.blue,
+                child: Text("Go Back",
                   style: TextStyle(color: Colors.white),
                 ),
-                color: Colors.blue,
                 onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => FormActivity()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp()));
                 },
               ),
-            )
+            ),
           ],
         ),
       ),
     );
   }
 }
+
 
