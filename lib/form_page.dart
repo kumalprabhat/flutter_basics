@@ -112,7 +112,7 @@ class _FormPageState extends State<FormPage> {
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp()));
+                  showAlertDialog(context);
                 },
               ),
             ),
@@ -123,4 +123,27 @@ class _FormPageState extends State<FormPage> {
   }
 }
 
+showAlertDialog(BuildContext context) {
+  Widget okButton = FlatButton(
+    child: const Text("Yes"),
+    onPressed: () {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp()));
+    },
+  );
 
+  AlertDialog alert = AlertDialog(
+    title: Text("Logout?"),
+    content: Text("You Want to logout?"),
+    actions: [
+      okButton,
+
+    ],
+  );
+
+  showDialog(
+      context: context,
+      builder: (BuildContext context){
+        return alert;
+      },
+  );
+}
